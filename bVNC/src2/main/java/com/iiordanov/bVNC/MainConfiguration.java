@@ -230,6 +230,10 @@ public abstract class MainConfiguration extends FragmentActivity implements GetT
         updateViewFromSelected();
         IntroTextDialog.showIntroTextIfNecessary(this, database, Utils.isFree(this) && startingOrHasPaused);
         startingOrHasPaused = false;
+
+        Log.i(TAG, "=---> immediately calling canvasStart");
+        selected.setConnectionType(Constants.CONN_TYPE_PLAIN);
+        canvasStart();
     }
     
     /**

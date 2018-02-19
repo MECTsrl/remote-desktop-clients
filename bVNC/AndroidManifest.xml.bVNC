@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!--MODIFY_AUDIO_SETTINGS-->
     <!--RECORD_AUDIO-->
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
@@ -23,6 +24,20 @@
         android:anyDensity="true"/>
 		
     <application android:icon="@drawable/icon" android:label="@string/bvnc_app_name" android:allowBackup="false" android:theme="@style/AppTheme" android:name="com.iiordanov.bVNC.App" tools:replace="android:label,android:theme">
+
+                <receiver
+                    android:enabled="true"
+                    android:exported="true"
+                    android:name="com.iiordanov.bVNC.activityRunOnStartup"
+                    android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+
+                    <intent-filter>
+                        <action android:name="android.intent.action.BOOT_COMPLETED" />
+                        <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                        <category android:name="android.intent.category.DEFAULT" />
+                    </intent-filter>
+
+                </receiver>
                 <activity android:label="@string/bvnc_app_name"
                           android:name="com.iiordanov.bVNC.bVNC"
                           android:screenOrientation="unspecified"

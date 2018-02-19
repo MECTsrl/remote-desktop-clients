@@ -431,10 +431,11 @@ public class RemoteCanvas extends ImageView implements UIEventListener, EventLis
      * @throws Exception
      */
     private void startVncConnection() throws Exception {
-        Log.i(TAG, "Connecting to: " + connection.getAddress() + ", port: " + connection.getPort());
-        String address = getAddress();
-        int vncPort = getPort(connection.getPort());
-        boolean sslTunneled = connection.getConnectionType() == Constants.CONN_TYPE_STUNNEL;
+        // Log.i(TAG, "Connecting to: " + connection.getAddress() + ", port: " + connection.getPort());
+        String address = "192.168.5.211"; // getAddress();
+        int vncPort = 5900; // getPort(connection.getPort());
+        boolean sslTunneled = false; // connection.getConnectionType() == Constants.CONN_TYPE_STUNNEL;
+        Log.i(TAG, "=---> Connecting to: " + address + ", port: " + vncPort);
 
         try {
             rfb = new RfbProto(decoder, this, address, vncPort, connection.getPrefEncoding(), connection.getViewOnly(),

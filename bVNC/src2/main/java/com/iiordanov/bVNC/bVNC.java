@@ -25,6 +25,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -121,6 +122,11 @@ public class bVNC extends MainConfiguration {
         textNickname = (EditText) findViewById(R.id.textNickname);
         textUsername = (EditText) findViewById(R.id.textUsername);
         autoXStatus = (TextView) findViewById(R.id.autoXStatus);
+
+        // Default values
+        ipText.setText("192.168.5.211");
+        portText.setText("5900");
+        Log.i(TAG, "=---> ipText override");
 
         // Define what happens when the Repeater button is pressed.
         repeaterButton = (Button) findViewById(R.id.buttonRepeater);
