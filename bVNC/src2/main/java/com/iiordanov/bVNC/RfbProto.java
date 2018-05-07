@@ -343,6 +343,7 @@ class RfbProto implements RfbConnectable {
         if (sock == null) {
             sock = new Socket(host, port);
             sock.setTcpNoDelay(true);
+            sock.setKeepAlive(true);
         }
 
         this.sock = sock;
