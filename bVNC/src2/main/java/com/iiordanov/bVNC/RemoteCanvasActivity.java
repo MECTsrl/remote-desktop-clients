@@ -395,6 +395,12 @@ public class RemoteCanvasActivity extends AppCompatActivity implements OnKeyList
     
     @SuppressWarnings("deprecation")
     private void setKeyStowDrawableAndVisibility() {
+
+	/*** MECT: disable overlays ***/
+        keyStow.setVisibility(View.GONE);
+        layoutKeys.setVisibility(View.GONE);
+        layoutArrowKeys.setVisibility(View.GONE);
+    /*
         Drawable replacer = null;
         if (layoutKeys.getVisibility() == View.GONE)
             replacer = getResources().getDrawable(R.drawable.showkeys);
@@ -412,6 +418,7 @@ public class RemoteCanvasActivity extends AppCompatActivity implements OnKeyList
             keyStow.setVisibility(View.GONE);
         else
             keyStow.setVisibility(View.VISIBLE);
+    */
     }
     
     /**
@@ -917,7 +924,8 @@ public class RemoteCanvasActivity extends AppCompatActivity implements OnKeyList
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         try {
-            getMenuInflater().inflate(R.menu.vnccanvasactivitymenu, menu);
+	    /*** MECT: disable options menu ***/
+            // getMenuInflater().inflate(R.menu.vnccanvasactivitymenu, menu);
             
             Menu inputMenu = menu.findItem(R.id.itemInputMode).getSubMenu();
             inputModeMenuItems = new MenuItem[inputModeIds.length];

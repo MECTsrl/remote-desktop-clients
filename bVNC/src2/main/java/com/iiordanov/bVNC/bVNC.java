@@ -119,6 +119,10 @@ public class bVNC extends MainConfiguration {
         textUsername = (EditText) findViewById(R.id.textUsername);
         autoXStatus = (TextView) findViewById(R.id.autoXStatus);
 
+        /*** MECT: default values ***/
+        ipText.setText("192.168.5.211");
+        portText.setText("5900");
+
         // Define what happens when the Repeater button is pressed.
         repeaterButton = (Button) findViewById(R.id.buttonRepeater);
         repeaterEntry = (LinearLayout) findViewById(R.id.repeaterEntry);
