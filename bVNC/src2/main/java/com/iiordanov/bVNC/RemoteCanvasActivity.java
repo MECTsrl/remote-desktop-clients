@@ -23,6 +23,7 @@
 //
 package com.iiordanov.bVNC;
 
+import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -171,7 +172,9 @@ public class RemoteCanvasActivity extends AppCompatActivity implements OnKeyList
             enableImmersive();
         }
     }
-    
+    private Timer pingTimer;
+    private TimerTask pingTimerTask;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -179,8 +182,22 @@ public class RemoteCanvasActivity extends AppCompatActivity implements OnKeyList
         initialize();
         if (connection != null && connection.isReadyForConnection())
         	continueConnecting();
+
+        /*** MECT: ping TPAC **/
+        pingTimer = new Timer();
+        pingTimerTask = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    Runtime runtime = Runtime.getRuntime();
+                    Process proc = runtime.exec("ping -c 1 -W 1 192.168.5.211");
+                    proc.waitFor();
+                } catch (Exception ignored) {}
+            }
+        };
+        pingTimer.schedule(pingTimerTask, 500, 1000);
     }
-    
+
     void initialize () {
         if (android.os.Build.VERSION.SDK_INT >= 9) {
             android.os.StrictMode.ThreadPolicy policy = new android.os.StrictMode.ThreadPolicy.Builder().permitAll().build();
