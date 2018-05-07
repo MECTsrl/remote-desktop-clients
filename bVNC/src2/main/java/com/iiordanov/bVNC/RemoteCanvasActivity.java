@@ -24,6 +24,7 @@
 package com.iiordanov.bVNC;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -189,10 +190,15 @@ public class RemoteCanvasActivity extends AppCompatActivity implements OnKeyList
             @Override
             public void run() {
                 try {
-                    Runtime runtime = Runtime.getRuntime();
-                    Process proc = runtime.exec("ping -c 1 -W 1 192.168.5.211");
-                    proc.waitFor();
-                } catch (Exception ignored) {}
+                    InetAddress inet = InetAddress.getByName("192.168.5.211");
+                    if (inet.isReachable(500)) {
+                        Log.i(TAG, "ping OK");
+                    } else {
+                        Log.i(TAG, "ping NG");
+                    }
+                } catch (Exception ignored) {
+                    Log.i(TAG, "cannot ping");
+                }
             }
         };
         pingTimer.schedule(pingTimerTask, 500, 1000);
